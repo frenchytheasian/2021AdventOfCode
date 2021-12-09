@@ -1,5 +1,5 @@
 from pprint import pprint
-import re
+from typing import List
 
 def parse_data():
     data = []
@@ -52,7 +52,7 @@ def generateMap(signals):
 
     return known
 
-def create_checker(map):
+def reverse_dict(map):
     """
     sort the strings and create a new dictionary
     """
@@ -62,7 +62,16 @@ def create_checker(map):
         patterns[new_key] = key
     return patterns
 
-def get_value(key, nums):
+def get_value(key: dict, nums: List) -> int:
+    """[summary]
+
+    Args:
+        key (dict): [description]
+        nums (List): [description]
+
+    Returns:
+        int: [description]
+    """
     final_num = ""
     for digit in nums:
         query = "".join(sorted(digit))
@@ -74,10 +83,10 @@ def main():
     data = parse_data()
     nums, signals = data[0], data[1]
 
-    total = 0
+    total = 0           # final answer
     for i, line in enumerate(nums):
         my_map = generateMap(signals[i])
-        checker = create_checker(my_map)
+        checker = reverse_dict(my_map)
         total += get_value(checker, nums[i])
 
     print(total)
