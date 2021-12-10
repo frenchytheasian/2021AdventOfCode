@@ -13,7 +13,7 @@ def day(ages):
 
 def main():
     ages = parse_data()
-    for i in range(256):
+    for _ in range(256):
         day(ages)
     print(sum(ages))
 
